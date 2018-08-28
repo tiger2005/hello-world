@@ -153,11 +153,12 @@ void run(){
     s=-1;
     now=5000000;
     pr=false;
+    ti=0;
     t1=clock();
     sou1(1,q);
     t2=clock();
     ti=ti+t2-t1;
-    printf("----------------------\nUse %d ms to run...\n",ti);
+    printf("\n----------------------\nUse %d ms to run...\n",ti);
 }
 int main(int argc , char *argv[])
 {
