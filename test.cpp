@@ -176,8 +176,8 @@ int main(int argc , char *argv[])
 		printf(">>> Running the %d th test\n",t);
 		colset(15);
 		ifstream file1;
-		file1.open(argv[1]);
-		if(!strcmp(argv[1],"?")){
+		file1.open(argv[t]);
+		if(!strcmp(argv[t],"?")){
 			printf("+-----------------------------------------------------------+\n");
 			printf("|This is a Brainfuck compile system                         |\n");
 			printf("|You can compile your Brainfuck code easyly                 |\n");
