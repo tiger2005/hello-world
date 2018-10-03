@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset=UTF-8>
+<title>Brainfuck IDE</title>
+<link rel="Shortcut Icon" href="https://www.z4a.net/images/2018/10/03/aaa.png"/>
+<script>
+function suan(ng){
+	if(ng==0)	return "Sun";
+	if(ng==1)	return "Mon";
+	if(ng==2)	return "Tue";
+	if(ng==3)	return "Wed";
+	if(ng==4)	return "Thu";
+	if(ng==5)	return "Fri";
+	if(ng==6)	return "Sat";
+}
+var countdown = function(){
+    var now = new Date;
+    var dt = now.toLocaleString().split(/\s+/);
+    date.innerHTML = dt[0] + "   " + suan(now.getDay())+"   ";
+    time.innerHTML = dt[1];
+    setTimeout(countdown, 1000);
+}
+onload = countdown;
+</script>
+</head>
 <body style="background-color:#000000">
 <table>
 <tr>
@@ -17,6 +41,14 @@
 			   background-color:#000000;
 			   color:#0F0;"> Compile and Run </button></td>
 			   <br>
+<td><div id="date" style="font-family:Consolas;
+			   font-size:30px;
+			   background-color:#000000;
+			   color:#00FF00;"></div></td>
+<td><div id="time" style="font-family:Consolas;
+			   font-size:30px;
+			   background-color:#000000;
+			   color:#00FF00;"></div></td>
 </tr>
 </table>
 <textarea rows="19" cols="125" id="code" placeholder="Code"
