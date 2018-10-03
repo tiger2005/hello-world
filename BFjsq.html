@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:#000000">
+<table>
+<tr>
+<td><p style="font-family:Consolas ; font-size:30px ;
+				 background-color:#000000 ;  
+				 color:#0F0;">Brainfuck IDE</p></td>
+<td><button type="button" onclick="aa()"
+		style="font-family:Consolas;
+			   font-size:30px;
+			   background-color:#000000;
+			   color:#0F0;"> Compile </button></td>
+<td><button type="button" onclick="aaa()"
+		style="font-family:Consolas;
+			   font-size:30px;
+			   background-color:#000000;
+			   color:#0F0;"> Compile and Run </button></td>
+			   <br>
+</tr>
+</table>
+<textarea rows="19" cols="125" id="code" placeholder="Code"
+		  placeholder="Input your Brainfuck code"
+		  style="font-family:Consolas ; font-size:20px ;
+				 background-color:#000000 ; 
+				 resize:none ; 
+				 word-wrap:normal;
+				 color:#0F0;"></textarea>
+<br>
+<table>
+<tr>
+<td><textarea readonly="readonly" rows="7" cols="60" 
+	id="info" placeholder="COMPILE INFORMATION" 
+	style="
+	font-family:Consolas;
+	font-size:20px;
+	background-color:#000000;
+	resize:none ; 
+	color:#0F0;
+	"></textarea></td>
+<td><textarea rows="7" cols="30" id="input" placeholder="INPUT" 
+	style="
+	font-family:Consolas;
+	font-size:20px;
+	background-color:#000000 ; 
+	resize:none ; 
+	color:#0F0;
+	"></textarea></td>
+<td><textarea readonly="readonly" rows="7" cols="30" id="ouput" placeholder="OUPUT" 
+	style="
+	font-family:Consolas;
+	font-size:20px;
+	background-color:#000000 ; 
+	resize:none ; 
+	color:#0F0;
+	"></textarea></td>
+</tr>
+</table>
+<script>
+	var lo,now,aaa,re,xx,yy,txt,ii,oo,by,coun=0,qwq;
+	function com(be,en){
+		if(be>en){
+			re=re+xx+'|'+yy+":Runtime Error: There's no anything in it\n";
+			aaa=false;
+		}
+		var nn=be;
+		while(nn<=en){
+			if(lo[nn]=='<'){
+				;
+			}
+			else if(lo[nn]=='>'){
+				;
+			}
+			else if(lo[nn]=='+'){
+				;
+			}
+			else if(lo[nn]=='-'){
+				;
+			}
+			else if(lo[nn]=='.'){
+				;
+			}
+			else if(lo[nn]==','){
+				;
+			}
+			else if(lo[nn]=='['){
+				var nnn=nn+1,no=1;
+				while(no!=0 && nnn<=en){
+					if(lo[nnn]=='[')    ++no;
+					if(lo[nnn]==']')    --no;
+					++nnn;
+				}
+				if(nnn!=en+1||no==0){
+					aaa=com(nn+1,nnn-2);
+				}
+				else{
+					re=re+xx+'|'+yy+":Compile Error: I can\'t find the last part there\n";
+					aaa=false;
+				}
+				nn=nnn-1;
+			}
+			else if(lo[nn]==' '){;}
+			else if(lo[nn]==']'){
+				re=re+xx+'|'+yy+":Comlple Error: I can\'t the first part there\n";
+				aaa=false;
+			}
+			else if(lo[nn]=='\n'){
+				++xx;yy=0;
+			}
+			++yy;
+			++nn;
+		}
+		return aaa;
+	}
+	function get(){
+		qwq=qwq+1;
+		if(ii[qwq]!=undefined){
+			return ii.charCodeAt(qwq);
+		}
+		else	return 0;
+	}
+	function run(be,en){
+		var nn=be;
+		while(nn<=en){
+			if(lo[nn]=='<'){
+				--now;
+			}
+			else if(lo[nn]=='>'){
+				++now;
+			}
+			else if(lo[nn]=='+'){
+				++by[now];
+				while(by[now]<0)    by[now]+=256;
+				while(by[now]>255)  by[now]-=256;
+			}
+			else if(lo[nn]=='-'){
+				--by[now];
+				while(by[now]<0)    by[now]+=256;
+				while(by[now]>255)  by[now]-=256;
+			}
+			else if(lo[nn]=='.'){
+				while(by[now]<0)    by[now]+=256;
+				while(by[now]>255)  by[now]-=256;
+				document.getElementById("ouput").value += String.fromCharCode(by[now]);
+			}
+			else if(lo[nn]==','){
+				by[now]=get();
+			}
+			else if(lo[nn]=='['){
+				var nnn=nn+1,no=1;
+				while(no!=0){
+					if(lo[nnn]=='[')    ++no;
+					if(lo[nnn]==']')    --no;
+					++nnn;
+				}
+				while(by[now]!=0){
+					//alert(by[now]+"|||");
+					run(nn+1,nnn-2);
+				}
+				nn=nnn-1;
+			}
+			++nn;
+		}
+	}
+	function aa(){
+		lo = document.getElementById("code").value; 
+		now=1;
+		xx=1;
+		yy=1;
+		aaa=true;
+		re='';
+		if(com(0,lo.length-1))	re=re+"Compile Succeed\n";
+		else	re=re+"Compile failed\n";
+		document.getElementById("info").value = re;
+		return;
+	}
+	function aaa(){
+		alert("inininini");
+		document.getElementById("ouput").value = '\0';
+		lo = document.getElementById("code").value; 
+		now=1;
+		xx=1;
+		yy=1;
+		aaa=true;
+		re='';
+		if(com(0,lo.length-1)){
+			ii = document.getElementById("input").value;
+			re=re+"Compile Succeed\n";
+			document.getElementById("info").value = 0;
+			qwq=-1;
+			now=5000000;
+			by=new Array(10000001);
+			var i=0;
+			while(i<10000001){
+				by[i]=0;
+				++i;
+			}
+			document.getElementById("ouput").value = '';
+			run(0,lo.length-1);
+		}
+		else	re=re+"Compile failed\n";
+		document.getElementById("info").value = re;
+		return;
+	}
+</script>
+</body>
+</html>
