@@ -91,7 +91,7 @@ onload = countdown;
 </tr>
 </table>
 <script>
-	var lo,now,aaa,re,xx,yy,txt,ii,oo,by,coun=0,qwq;
+	var lo,now,aaa,re,xx,yy,txt,ii,oo,by,coun=0,qwq,sss;
 	function com(be,en){
 		if(be>en){
 			re=re+xx+'|'+yy+":Runtime Error: There's no anything in it\n";
@@ -156,6 +156,11 @@ onload = countdown;
 	function run(be,en){
 		var nn=be;
 		while(nn<=en){
+			++sss;
+			if(sss>25000000){
+				alert("Time is more");
+				return;
+			}
 			if(lo[nn]=='<'){
 				--now;
 			}
@@ -187,24 +192,17 @@ onload = countdown;
 				}
 				while(by[now]!=0){
 					run(nn+1,nnn-2);
+					++sss;
+					if(sss>25000000){
+					alert("Time is more");
+						return;
+					}
 				}
 				nn=nnn-1;
 			}
 			++nn;
 		}
 		return 0;
-	}
-	function aa(){
-		lo = document.getElementById("code").value; 
-		now=1;
-		xx=1;
-		yy=1;
-		aaa=true;
-		re='';
-		if(com(0,lo.length-1))	re=re+"Compile Succeed\n";
-		else	re=re+"Compile failed\n";
-		document.getElementById("info").value = re;
-		return;
 	}
 	function aa(qwqwq){
 		lo = document.getElementById("code").value; 
@@ -226,6 +224,7 @@ onload = countdown;
 					++i;
 				}
 				document.getElementById("ouput").value = '';
+				sss=0;
 				run(0,lo.length-1);
 			}
 			document.getElementById("info").value = re;
