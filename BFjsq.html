@@ -216,7 +216,6 @@ onload = countdown;
 		if(com(0,lo.length-1)){
 			re=re+"Compile Succeed\n";
 			if(qwqwq){
-				document.getElementById("ouput").value = '\0';
 				ii = document.getElementById("input").value;
 				qwq=-1;
 				now=5000000;
@@ -229,7 +228,7 @@ onload = countdown;
 				document.getElementById("ouput").value = '';
 				run(0,lo.length-1);
 			}
-			document.getElementById("info").value = re;;
+			document.getElementById("info").value = re;
 			return;
 		}
 		else	re=re+"Compile failed\n";
