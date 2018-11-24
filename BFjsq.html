@@ -155,10 +155,6 @@ onload = countdown;
 		var nn=be;
 		while(nn<=en){
 			++sss;
-			if(sss>=250){
-				if(sss==250)	alert("Time is more");
-				return;
-			}
 			if(lo[nn]=='<'){
 				--now;
 			}
@@ -190,11 +186,6 @@ onload = countdown;
 				}
 				while(by[now]!=0){
 					run(nn+1,nnn-2);
-					++sss;
-					if(sss>=250){
-						if(sss==250)	alert("Time is more");
-						return;
-					}
 				}
 				nn=nnn-1;
 			}
