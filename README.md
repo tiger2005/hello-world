@@ -1,3 +1,1 @@
-# Hello
 
-There is a Brainf**k code compile system...
